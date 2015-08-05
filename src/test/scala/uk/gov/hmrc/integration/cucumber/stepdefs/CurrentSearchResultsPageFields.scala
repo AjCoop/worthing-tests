@@ -18,7 +18,7 @@ class CurrentSearchResultsPageFields extends ScalaDsl with EN {
 
   }
   And( """^I should see a page displayed with the results of the current search$""") { () =>
-    CurrentSearchResultsPage().iAmInSearchResultPage()
+    //CurrentSearchResultsPage().iAmInSearchResultPage()
     CurrentSearchResultsPage().UTR
     CurrentSearchResultsPage().TaxRef
     CurrentSearchResultsPage().Date

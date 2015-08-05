@@ -13,5 +13,5 @@ Feature: Search for Post
     Then  I will get the invalid format error messages displayed on the page
 
   Scenario: Search using valid UTR,TaxRefType and date entered
-    Given I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date format and I click the submit button
+    Given I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button
     Then I will progress to the search Results page
