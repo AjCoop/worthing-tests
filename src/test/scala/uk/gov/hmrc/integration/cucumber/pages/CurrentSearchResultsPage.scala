@@ -5,7 +5,7 @@ import java.util.Calendar
 import org.junit.Assert
 import org.openqa.selenium.{Keys, WebDriver, WebElement, By}
 import org.scalatest.Matchers
-import uk.gov.hmrc.integration.test.utils.BaseUtil._
+import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 
 /**

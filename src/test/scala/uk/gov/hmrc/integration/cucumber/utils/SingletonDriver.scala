@@ -128,7 +128,7 @@ class Driver {
       new FirefoxDriver(capabilities)
     }
 
-    val environmentProperty = System.getProperty("browser","htmlunit")
+    val environmentProperty = System.getProperty("browser","firefox")
     environmentProperty match {
       case "firefox" => createFirefoxDriver
       case "browserstack" => createBrowserDriver

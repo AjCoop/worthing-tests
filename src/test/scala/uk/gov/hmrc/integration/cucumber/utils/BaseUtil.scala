@@ -1,16 +1,18 @@
-package uk.gov.hmrc.integration.test.utils
+package uk.gov.hmrc.integration.cucumber.utils
 
-import java.io.FileInputStream
+import java.io.{File, FileInputStream}
 import java.util.Properties
 
 import org.joda.time.LocalDate
 
 object BaseUtil {
-  val fis = new FileInputStream("./src/test/resources/messages.properties")
+  // In the DDCN project the following are set to ./ not ../../ but that didn't work for me HN.
+  // If you can fix it let me know how :)
+  val fis = new FileInputStream("../../src/test/resources/message.properties")
   val props: Properties = new Properties()
   loadProperties(fis, props)
 
-  val feFis = new FileInputStream("./src/test/resources/copyOfFrontendMessages.properties")
+  val feFis = new FileInputStream("../../src/test/resources/copyOfFrontendMessages.properties")
   val feProps: Properties = new Properties()
   loadProperties(feFis, feProps)
 
