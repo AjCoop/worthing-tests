@@ -29,7 +29,7 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     def TaxRefRadioLabel()= Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/label[2]")).getText.contains("Tax Reference"))
     def Identifier() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[1]/label")).getText.contains("Identifier"))
     def Date()=Assert.assertTrue(driver.findElement(By.xpath("//*[@id='dateSent']/legend")).getText.contains("Date Sent"))
-    def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("You search criteria contains one or more errors"))
+    def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("Your search criteria contains one or more errors"))
 
     //def TaxRefRadio = driver.findElement(By.xpath("//*[@id='radio-inline-4']"))
     def DateDay = driver.findElement(By.xpath("//*[@id='dateSent.day']"))
@@ -40,12 +40,12 @@ class CapturePage (val driver: WebDriver) extends Matchers {
 
     //valid data for the utr,type and date fields
 
-    def identifierDetails {
-      driver.navigate().to(CapturePageURL)
-      driver.findElement(By.id("utr")).sendKeys(getMessage("testValue.id"))
+  // selecting the type
+    def selectTaxRef() = driver.findElement(By.name(getMessage("testValue.idType"))).click()
+
+    def identifierDetails() {
+      driver.findElement(By.xpath("//*[@id='id']")).sendKeys(getMessage("testValue.id"))
     }
-    // selecting the type
-    def selectTaxRef() = driver.findElement(By.xpath("//*[@id='searchType-utr']")).click()
 
     // retrieving the values for date fields.
     val cal: Calendar = Calendar.getInstance()
@@ -54,17 +54,14 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     val currentYear = cal.get(Calendar.YEAR)
 
     def enterDay()                          = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id ("dateSent.day")).clear()
       driver.findElement(By.id("dateSent.day")).sendKeys(""+currentDay)
     }
     def enterMonth()                      = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id("dateSent.month")).clear()
       driver.findElement(By.id("dateSent.month")).sendKeys(""+currentMonth)
     }
     def enterYear()                        = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id("dateSent.year")).clear()
       driver.findElement(By.id ("dateSent.year")).sendKeys(""+currentYear)
     }
@@ -72,7 +69,6 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     //for empty fields
 
     def emptyIdentifierField() = {
-     driver.navigate().to(CapturePageURL)
       driver.findElement(By.id("id")).clear()
     }
 
@@ -81,17 +77,14 @@ class CapturePage (val driver: WebDriver) extends Matchers {
    // }
 
     def emptyDayField()                          = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id ("dateSent.day")).clear()
 
     }
     def emptyMonthField()                      = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id("dateSent.month")).clear()
 
     }
     def emptyYearField()                        = {
-      driver.navigate().to(CapturePageURL)
       driver.findElement(By.id("dateSent.year")).clear()
        }
 
