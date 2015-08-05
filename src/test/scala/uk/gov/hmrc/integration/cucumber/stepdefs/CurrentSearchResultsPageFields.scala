@@ -9,12 +9,12 @@ class CurrentSearchResultsPageFields extends ScalaDsl with EN {
 
   Given( """^I am on the Search Results Page$""") { () =>
     CapturePage().iAmInCapturePage()
-    CapturePage().Utrdetails
+    CapturePage().identifierDetails
     CapturePage().selectTaxRef
     CapturePage().enterDay()
     CapturePage().enterMonth()
     CapturePage().enterYear()
-    CapturePage().clickContinue_button()
+    CapturePage().clickFindPost_button()
 
   }
   And( """^I should see a page displayed with the results of the current search$""") { () =>

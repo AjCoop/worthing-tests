@@ -24,4 +24,5 @@ object BasePage {
     Result
   }
 
+  def ShutdownTest() = driver.quit()
  }
