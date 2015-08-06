@@ -7,7 +7,7 @@ package uk.gov.hmrc.integration.cucumber.pages
 
 import java.sql.Driver
 import java.util.Calendar
-
+import scala.collection.JavaConverters._
 import org.openqa.selenium.support.ui.Select
 import org.openqa.selenium.{Keys, WebDriver, WebElement, By}
 import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
@@ -17,12 +17,12 @@ import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 
 class CapturePage (val driver: WebDriver) extends Matchers {
-    //url and the current page
+  //url and the current page
     val CapturePageURL = "http://localhost:4001/tlfd-frontend/wmp/search"
     def iAmInCapturePage() = driver.getCurrentUrl shouldBe CapturePageURL
     def login(){driver.navigate().to(CapturePageURL)}
 
-    //page heading, titles, field names verified
+  //page heading, titles, field names verified
     def verifyHeading()  =  Assert.assertTrue(driver.findElement(By.xpath("//*[@id='page-title']")).getText.contains("Search"))
     def verifySearchSubHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/legend")).getText.contains("Select how you wish to search"))
     def UTRRadioLabel() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/label[1]")).getText.contains("UTR"))
@@ -30,26 +30,66 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     def Identifier() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[1]/label")).getText.contains("Identifier"))
     def Date()=Assert.assertTrue(driver.findElement(By.xpath("//*[@id='dateSent']/legend")).getText.contains("Date Sent"))
     def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("Your search criteria contains one or more errors"))
-   //Links
 
-    //def TaxRefRadio = driver.findElement(By.xpath("//*[@id='radio-inline-4']"))
+  //Links
+
     def DateDay = driver.findElement(By.xpath("//*[@id='dateSent.day']"))
     def DateMonth = driver.findElement(By.xpath("//*[@id='dateSent.month']"))
     def DateYear = driver.findElement(By.xpath("//*[@id='dateSent.year']"))
 
     def clickFindPost_button() = driver.findElement(By.xpath("//*[@id='content']/form/button")).click()
 
-    //valid data for the utr,type and date fields
+  //valid data for the utr,type and date fields
 
   // selecting the type
     def selectTaxRef() = driver.findElement(By.xpath("//*[@id='searchType']/label[1]")).click()
-  //def selectTaxRef() = driver.findElement(By.xpath(""))
 
+
+  // identifier where the status is not found
     def identifierDetails() {
       driver.findElement(By.xpath("//*[@id='id']")).sendKeys(getMessage("testValue.id"))
     }
 
-    // retrieving the values for date fields.
+
+    def idElement = driver.findElement(By.id("id"))
+    def dayElement= driver.findElement (By.id("dateSent.day"))
+    def monthElement= driver.findElement(By.id("dateSent.month"))
+    def yearElement = driver.findElement(By.id("dateSent.year"))
+
+    def radioInlist(groupName: String, text: String) = {
+      val selector = "#" + groupName +  " > label" // if id was bob selector = "#id > label" meaning all label elements directly under an element with the id of bob
+
+      // go find me the elements convert the list of elements to a slist of scala list of elements (.asScala.toList)
+      val labelsContainingRadioButtons = driver.findElements(By.cssSelector(selector)).asScala.toList
+
+      // filter the list based on the text (.filter(blah blah)) and return me the first element [label element] in the list (.head)
+      val labelWithmatchingText = labelsContainingRadioButtons.filter(l => l.getText == text).head
+
+      //return the radio button within the label
+      labelWithmatchingText.findElement(By.tagName("input"))
+    }
+
+    def inputSearchPostData(idType: String, id: String, day: String, month: String, year: String) {
+        radioInlist("searchType", idType).click()
+        idElement.sendKeys(id)
+        dayElement.sendKeys(day)
+        monthElement.sendKeys(month)
+        yearElement.sendKeys(year)
+
+    }
+  //data to enter in the Search post page
+    def fillData(text: String) = text match {
+       case "option1" => inputSearchPostData("UTR", "1234", "01" , "07", "2015")
+       case "option2" => inputSearchPostData("UTR","AB56789", "28" , "05" , "2015")
+       case "option3" => inputSearchPostData("Tax Reference","0A12340","28" ,"07" ,"2015")
+
+    }
+
+
+
+
+
+  // retrieving the values for date fields.
     val cal: Calendar = Calendar.getInstance()
     val currentDay = cal.get(Calendar.DAY_OF_MONTH)
     val currentMonth= (cal.get(Calendar.MONTH)+1)
@@ -68,15 +108,11 @@ class CapturePage (val driver: WebDriver) extends Matchers {
       driver.findElement(By.id ("dateSent.year")).sendKeys(""+currentYear)
     }
 
-    //for empty fields
+  //for empty fields
 
     def emptyIdentifierField() = {
       driver.findElement(By.id("id")).clear()
     }
-
-    //def unSelectTaxRef() {
-     // driver.navigate().refresh()
-   // }
 
     def emptyDayField()                          = {
       driver.findElement(By.id ("dateSent.day")).clear()
@@ -90,7 +126,7 @@ class CapturePage (val driver: WebDriver) extends Matchers {
       driver.findElement(By.id("dateSent.year")).clear()
        }
 
-   //for invalid data
+  //for invalid data
     def invalidIdentifier()                   = {
     driver.findElement(By.id("id")).clear()
     driver.findElement(By.id("id")).sendKeys(getMessage("testIdentifier.invalid"))
@@ -111,13 +147,13 @@ class CapturePage (val driver: WebDriver) extends Matchers {
      driver.findElement(By.id("dateSent.year")).sendKeys(getMessage("testYear.invalid"))
     }
 
-     // mandatory error messages verified for the fields
+  // mandatory error messages verified for the fields
     def mandatoryIdentifierError()  = driver.findElement(By.xpath("//*[@id='id-error']/a")).getText shouldBe getMessage ("testIdentifierValue.errormessage")
     def mandatoryTaxRefError() = driver.findElement(By.xpath("//*[@id='searchType-error']/a")).getText shouldBe getMessage("testTaxRefValue.errormessage")
     def mandatoryDateError()  = driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText shouldBe getMessage ("testDateValue.errormessage")
 
-    //field formats verified
-    //not used currently:def invalidUTRError()  = driver.findElement(By.id("UTR")).getText should include (getFrontendMessage("Invalid UTR entered"))
+  //field formats verified
+  //not used currently:def invalidUTRError()  = driver.findElement(By.id("UTR")).getText should include (getFrontendMessage("Invalid UTR entered"))
     def invalidDateError()  = driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText shouldBe getMessage ("testInvalidDate.erroemessage")
 
 

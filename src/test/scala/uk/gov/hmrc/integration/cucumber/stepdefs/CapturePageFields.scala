@@ -72,4 +72,19 @@ class CapturePageFields extends ScalaDsl with EN {
     CurrentSearchResultsPage().verifyCheckPostHeading()
      }
 
+  //SCENARIO:SEARCH USING VALID UTR,TAX REF TYPE AND DATE ENTERED WHERE THE STATUS IS RECEIVED
+
+  Given("""^I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button where the status is Received$""") {() =>
+    CapturePage().login()
+    CapturePage() iAmInCapturePage()
+//    CapturePage().selectTaxRef()
+    CapturePage().fillData("option3")
+//    CapturePage().enterDay()
+//    CapturePage().enterMonth()
+//    CapturePage().enterYear()
+    CapturePage().clickFindPost_button()
+  }
+  Then ("""^I will progress to the search Results page and the Received status is displayed$""") { () =>
+
+  }
 }
