@@ -47,6 +47,11 @@ class CurrentSearchResultsPage (val driver: WebDriver) extends Matchers {
 
   def ViewallSearch() {
     driver.findElement(By.id("viewAllSearchesLink")).click()
+
+
+
+
+
   }
 
 
