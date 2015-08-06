@@ -30,6 +30,7 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     def Identifier() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[1]/label")).getText.contains("Identifier"))
     def Date()=Assert.assertTrue(driver.findElement(By.xpath("//*[@id='dateSent']/legend")).getText.contains("Date Sent"))
     def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("Your search criteria contains one or more errors"))
+   //Links
 
     //def TaxRefRadio = driver.findElement(By.xpath("//*[@id='radio-inline-4']"))
     def DateDay = driver.findElement(By.xpath("//*[@id='dateSent.day']"))
@@ -41,7 +42,8 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     //valid data for the utr,type and date fields
 
   // selecting the type
-    def selectTaxRef() = driver.findElement(By.name(getMessage("testValue.idType"))).click()
+    def selectTaxRef() = driver.findElement(By.xpath("//*[@id='searchType']/label[1]")).click()
+  //def selectTaxRef() = driver.findElement(By.xpath(""))
 
     def identifierDetails() {
       driver.findElement(By.xpath("//*[@id='id']")).sendKeys(getMessage("testValue.id"))
@@ -50,7 +52,7 @@ class CapturePage (val driver: WebDriver) extends Matchers {
     // retrieving the values for date fields.
     val cal: Calendar = Calendar.getInstance()
     val currentDay = cal.get(Calendar.DAY_OF_MONTH)
-    val currentMonth= cal.get(Calendar.MONTH)
+    val currentMonth= (cal.get(Calendar.MONTH)+1)
     val currentYear = cal.get(Calendar.YEAR)
 
     def enterDay()                          = {

@@ -12,6 +12,7 @@ object BasePage {
 
     private var Capturing: CapturePage = _
     private var Result: CurrentSearchResultsPage = _
+  private var List: SearchListPage = _
 
 
   def CapturePage() = {
@@ -22,6 +23,11 @@ object BasePage {
   def CurrentSearchResultsPage() = {
     if (Result == null) Result = new CurrentSearchResultsPage(driver)
     Result
+  }
+
+  def SearchListPage() = {
+    if (List == null) List= new SearchListPage(driver)
+    List
   }
 
   def ShutdownTest() = driver.quit()
