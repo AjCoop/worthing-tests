@@ -1,4 +1,4 @@
-@suite
+@TLF1
 Feature: Search List Page
 
 
