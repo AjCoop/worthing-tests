@@ -42,7 +42,7 @@ object CapturePage extends BasePage with Matchers {
   //valid data for the utr,type and date fields
 
   // selecting the type
-    def selectTaxRef() = driver.findElement(By.xpath("//*[@id='searchType']/label[1]")).click()
+    def selectTaxRef() = driver.findElement(By.xpath("//*[@id='idType']/label[1]")).click()
 
 
   // identifier where the status is not found
@@ -70,7 +70,7 @@ object CapturePage extends BasePage with Matchers {
     }
 
     def inputSearchPostData(idType: String, id: String, day: String, month: String, year: String) {
-        radioInlist("searchType", idType).click()
+        radioInlist("idType", idType).click()
         idElement.sendKeys(id)
         dayElement.sendKeys(day)
         monthElement.sendKeys(month)
