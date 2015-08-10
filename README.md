@@ -1,7 +1,7 @@
 cucumber-acceptance-tests
 =========================
 
-This is the common project that will be used within DDCN when creating automated acceptance test frameworks using cucumber. Built using:
+This is the common project that will be used within DDCT when creating automated acceptance test frameworks using cucumber. Built using:
 
     Cucumber
     Selenium-webDriver
