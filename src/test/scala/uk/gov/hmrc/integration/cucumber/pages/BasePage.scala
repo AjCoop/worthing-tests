@@ -7,28 +7,29 @@ import uk.gov.hmrc.integration.cucumber.utils.SingletonDriver
 /**
  * Created by haripriya on 27/07/15.
  */
-object BasePage {
+object BasePage extends BasePage
+trait BasePage {
   val driver = SingletonDriver.getInstance()
 
-    private var Capturing: CapturePage = _
-    private var Result: CurrentSearchResultsPage = _
-  private var List: SearchListPage = _
 
-
-  def CapturePage() = {
-    if (Capturing == null) Capturing = new CapturePage(driver)
-    Capturing
+  def waitForPageToBeLoaded(condition: => Boolean, exceptionMessage: String, timeoutInSeconds: Int = 2) {
+    val endTime = System.currentTimeMillis + timeoutInSeconds * 1000
+    while (System.currentTimeMillis < endTime) {
+      try {
+        if (condition) {
+          return
+        }
+      } catch {
+        case _: RuntimeException =>
+        // ignore exceptions during the timeout period because the condition
+        // is throwing exceptions and we DO want to try the condition again until the timeout expires
+      }
+    }
+    throw new HmrcPageWaitException(exceptionMessage + "\n@@@@@@@@@ The current page was: " + driver.getCurrentUrl + " with title " + driver.getTitle)
   }
 
-  def CurrentSearchResultsPage() = {
-    if (Result == null) Result = new CurrentSearchResultsPage(driver)
-    Result
-  }
+  class HmrcPageWaitException(exceptionMessage: String) extends Exception(exceptionMessage)
 
-  def SearchListPage() = {
-    if (List == null) List= new SearchListPage(driver)
-    List
-  }
 
   def ShutdownTest() = driver.quit()
  }

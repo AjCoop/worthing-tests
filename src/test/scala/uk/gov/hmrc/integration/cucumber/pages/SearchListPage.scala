@@ -15,7 +15,7 @@ import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 /**
  * Created by haripriya on 29/07/15.
  */
-class SearchListPage (val driver: WebDriver) extends Matchers {
+object SearchListPage extends BasePage with Matchers {
 
   //viewing all the fields titles/labels
   def SearchTime = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/thead/tr/th[1]")).getText.contains("Search Time"))

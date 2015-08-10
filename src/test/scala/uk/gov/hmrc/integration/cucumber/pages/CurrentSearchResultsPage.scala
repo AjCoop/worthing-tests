@@ -14,7 +14,7 @@ import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
  *
  * Created by haripriya on 29/07/15.
  */
-class CurrentSearchResultsPage (val driver: WebDriver) extends Matchers {
+object CurrentSearchResultsPage extends BasePage with Matchers {
 
   //val searchResultPageURL = "http://localhost:9090/tlfd/searchResults"
   //def iAmInSearchResultPage() = driver.getCurrentUrl shouldBe searchResultPageURL

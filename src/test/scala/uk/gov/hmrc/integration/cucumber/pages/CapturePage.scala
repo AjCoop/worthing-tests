@@ -16,7 +16,7 @@ import org.junit.Assert
 import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 
-class CapturePage (val driver: WebDriver) extends Matchers {
+object CapturePage extends BasePage with Matchers {
   //url and the current page
     val CapturePageURL = "http://localhost:4001/tlfd-frontend/wmp/search"
     def iAmInCapturePage() = driver.getCurrentUrl shouldBe CapturePageURL
