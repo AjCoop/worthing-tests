@@ -1,4 +1,4 @@
-@TLF1
+@sms
 Feature: End of All Tests
 
   Shutdown browser
