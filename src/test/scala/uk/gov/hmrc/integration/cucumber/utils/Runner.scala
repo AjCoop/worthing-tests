@@ -14,7 +14,7 @@ import scala.sys.process.Process
   features = Array("../../src/test/resources/features"),
   glue = Array("uk.gov.hmrc.integration.cucumber.stepdefs"),
   format = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  tags = Array("@TLF1")
+  tags = Array("@TLF3")
   //tags = Array("@Suite,@BAPP5,@Pending,@shutdown","~@Wip,~@Zap,~@BAPP-REGISTER")
 )
 class Runner {

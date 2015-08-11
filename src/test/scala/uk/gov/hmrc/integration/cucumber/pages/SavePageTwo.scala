@@ -20,8 +20,8 @@ object SavePageTwo extends BasePage with Matchers {
   def savePageTwoLable2()     = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[2]/label")).getText contains("Field Two"))
   def savePageTwoLable3()     = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[3]/label")).getText contains("Field Three"))
   val fieldOneId              = By.xpath("//*[@id='fieldTwoOne']")
-  val fieldTwoId              = By.id("fieldTwoTwo")
-  val fieldThreeId            = By.id("fieldTwoThree")
+  val fieldTwoId              = By.xpath("//*[@id='fieldTwoTwo']")
+  val fieldThreeId            = By.xpath("//*[@id='fieldTwoThree']")
   def clickContinue_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
 
   def mandatoryFieldOneError()  = driver.findElement(By.xpath("//*[@id='fieldTwoOne-error']/a")).getText contains ("This field is mandatory ")
