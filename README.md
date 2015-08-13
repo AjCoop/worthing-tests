@@ -4,8 +4,11 @@ tlfd-acceptance-tests
 This is the common project that will be used within DDCT when creating automated acceptance test frameworks using cucumber. Built using:
 
 cucumber 1.1.8
+
 java 1.8
+
 Scala 2.11.7
+
 SBT to build 0.13.8
     
 ### Getting started
