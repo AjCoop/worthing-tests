@@ -26,7 +26,7 @@ object CapturePage extends BasePage{
     def verifyHeading()  =  Assert.assertTrue(driver.findElement(By.xpath("//*[@id='page-title']")).getText.contains("Search"))
     def verifySearchSubHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/legend")).getText.contains("Select how you wish to search"))
     def UTRRadioLabel() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/label[1]")).getText.contains("UTR"))
-    def TaxRefRadioLabel()= Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/label[2]")).getText.contains("Tax Reference"))
+    def VRNRadioLabel()= Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/label[2]")).getText.contains("VRN"))
     def Identifier() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[1]/label")).getText.contains("Identifier"))
     def Date()=Assert.assertTrue(driver.findElement(By.xpath("//*[@id='dateSent']/legend")).getText.contains("Date Sent"))
     def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("Your search criteria contains one or more errors"))
