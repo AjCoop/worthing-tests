@@ -19,20 +19,8 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
 
   }
   When( """^I have entered details on Page One$""") {
-    (data: DataTable) =>
-      val row = data.asMaps(classOf[String], classOf[String]).iterator
-      while (row.hasNext) {
-        val map = row.next
-        val required_field = map.get("required_field")
-        val value = map.get("value")
+    (data: DataTable) => BasePage.inputDataFromFeature(data)
 
-        required_field match {
-          case "field one" => BasePage.driver.findElement(SavePageOne.fieldOneId).sendKeys(value)
-          case "field two" => BasePage.driver.findElement(SavePageOne.fieldTwoId).sendKeys(value)
-          case "field three" => BasePage.driver.findElement(SavePageOne.fieldThreeId).sendKeys(value)
-
-        }
-      }
   }
 
   Then( """^I click Continue$""") { () =>
@@ -41,29 +29,13 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
   }
 
   When( """^I have entered details on Page Two$""") {
-    (data: DataTable) =>
-      val row = data.asMaps(classOf[String], classOf[String]).iterator
-      while (row.hasNext) {
-        val map = row.next
-        val required_field = map.get("required_field")
-        val value = map.get("value")
+    (data: DataTable) => BasePage.inputDataFromFeature(data)
 
-        required_field match {
-          case "field one" => BasePage.driver.findElement(SavePageTwo.fieldOneId).sendKeys(value)
-          case "field two" => BasePage.driver.findElement(SavePageTwo.fieldTwoId).sendKeys(value)
-          case "field three" => BasePage.driver.findElement(SavePageTwo.fieldThreeId).sendKeys(value)
-
-        }
-      }
   }
   Then( """^I click Submit$""") { () =>
     SavePageTwo.clickContinue_button()
 
   }
-
-
-
-
 
   When ("""^I am on the SMS Summary Page$""") { () =>
     SavePageSummary.summaryTitle()
@@ -72,28 +44,28 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
 
 
   Then ("""^I will see the details I have entered$""") { () =>
-    (data: DataTable) =>
-      val row = data.asMaps(classOf[String], classOf[String]).iterator
-      while (row.hasNext) {
-        val map = row.next
-        val required_field = map.get("required_field")
-        val value = map.get("value")
-
-        required_field match {
-          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldOneValue, value)
-          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldTwoValue, value)
-          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldThreeValue, value)
-
-        }
-
-        required_field match {
-          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldOneValue, value)
-          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldTwoValue, value)
-          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldThreeValue, value)
-
-        }
+    (data: DataTable) => BasePage.checkDataFromFeature(data)
+//      val row = data.asMaps(classOf[String], classOf[String]).iterator
+//      while (row.hasNext) {
+//        val map = row.next
+//        val required_field = map.get("required_field")
+//        val value = map.get("value")
+//
+//        required_field match {
+//          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldOneValue, value)
+//          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldTwoValue, value)
+//          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldThreeValue, value)
+//
+//        }
+//
+//        required_field match {
+//          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldOneValue, value)
+//          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldTwoValue, value)
+//          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldThreeValue, value)
+//
+//        }
 
       }
 
-  }
+//  }
 }

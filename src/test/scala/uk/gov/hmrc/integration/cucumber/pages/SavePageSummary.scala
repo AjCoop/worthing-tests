@@ -23,12 +23,12 @@ object SavePageSummary extends BasePage {
 
 
 
-  val pageOneFieldOneValue             = "page_one_field_one"
-  val pageOneFieldTwoValue             = "page_one_field_two"
-  val pageOneFieldThreeValue           = "page_one_field_three"
-
-  val pageTwoFieldOneValue             = "page_two_field_one"
-  val pageTwoFieldTwoValue             = "page_two_field_two"
-  val pageTwoFieldThreeValue         = "page_two_field_three"
+//  val pageOneFieldOneValue             = "page_one_field_one"
+//  val pageOneFieldTwoValue             = "page_one_field_two"
+//  val pageOneFieldThreeValue           = "page_one_field_three"
+//
+//  val pageTwoFieldOneValue             = "page_two_field_one"
+//  val pageTwoFieldTwoValue             = "page_two_field_two"
+//  val pageTwoFieldThreeValue         = "page_two_field_three"
 
 }

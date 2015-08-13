@@ -24,9 +24,9 @@ object CapturePage extends BasePage{
 
   //page heading, titles, field names verified
     def verifyHeading()  =  Assert.assertTrue(driver.findElement(By.xpath("//*[@id='page-title']")).getText.contains("Search"))
-    def verifySearchSubHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/legend")).getText.contains("Select how you wish to search"))
-    def UTRRadioLabel() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/label[1]")).getText.contains("UTR"))
-    def TaxRefRadioLabel()= Assert.assertTrue(driver.findElement(By.xpath("//*[@id='searchType']/label[2]")).getText.contains("Tax Reference"))
+    def verifySearchSubHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/legend")).getText.contains("Select how you wish to search"))
+    def UTRRadioLabel() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/label[1]")).getText.contains("UTR"))
+    def TaxRefRadioLabel()= Assert.assertTrue(driver.findElement(By.xpath("//*[@id='idType']/label[2]")).getText.contains("Tax Reference"))
     def Identifier() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/form/div[1]/label")).getText.contains("Identifier"))
     def Date()=Assert.assertTrue(driver.findElement(By.xpath("//*[@id='dateSent']/legend")).getText.contains("Date Sent"))
     def verifyErrorHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='error-heading']")).getText.contains("Your search criteria contains one or more errors"))
@@ -84,10 +84,6 @@ object CapturePage extends BasePage{
        case "option3" => inputSearchPostData("Tax Reference","0A12340","28" ,"07" ,"2015")
 
     }
-
-
-
-
 
   // retrieving the values for date fields.
     val cal: Calendar = Calendar.getInstance()
@@ -149,7 +145,7 @@ object CapturePage extends BasePage{
 
   // mandatory error messages verified for the fields
     def mandatoryIdentifierError()  = driver.findElement(By.xpath("//*[@id='id-error']/a")).getText shouldBe getMessage ("testIdentifierValue.errormessage")
-    def mandatoryTaxRefError() = driver.findElement(By.xpath("//*[@id='searchType-error']/a")).getText shouldBe getMessage("testTaxRefValue.errormessage")
+    def mandatoryTaxRefError() = driver.findElement(By.xpath("//*[@id='idType-error']/a")).getText shouldBe getMessage("testTaxRefValue.errormessage")
     def mandatoryDateError()  = driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText shouldBe getMessage ("testDateValue.errormessage")
 
   //field formats verified

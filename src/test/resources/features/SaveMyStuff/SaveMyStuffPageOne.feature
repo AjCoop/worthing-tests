@@ -1,4 +1,4 @@
-@TLF1
+@TLF3
 
 Feature: Save My Stuff
 
@@ -14,10 +14,10 @@ Feature: Save My Stuff
   Scenario: Scenario 1 - Check the mandatory fields for "Save My Stuff-Page One" page
     Given I am on the Save My Stuff page
      When I enter the following data in to the Page one
-       | required_field          | value         |
-       | field one               |               |
-       | field two               |               |
-       | field three             |               |
+       | field_id                | value         |
+       | page.one.field.one      |               |
+       | page.one.field.two      |               |
+       | page.one.field.three    |               |
     When I have clicked the "Continue" button on the "Page One" page
     Then I will be informed "This field is mandatory"
 
@@ -27,10 +27,10 @@ Feature: Save My Stuff
 
     Given I am on the Save My Stuff page
      When I enter the following data in to the Page one
-       | required_field          | value          |
-       | field one               | AAAAAA         |
-       | field two               |                |
-       | field three             |                |
+       | field_id                | value          |
+       | page.one.field.one      | AAAAAA         |
+       | page.one.field.two      |                |
+       | page.one.field.three    |                |
     When I have clicked the "Continue" button on the "Page One" page
     Then I will progress to the "Page Two" page
 
@@ -38,10 +38,10 @@ Feature: Save My Stuff
 
    Given I am on the Save My Stuff page
    When I enter the following data in to the Page one
-     | required_field          | value          |
-     | field one               | 0!qaz"wsx£     |
-     | field two               | EDC$RFV5tg     |
-     | field three             |                |
+     | field_id                | value          |
+     | page.one.field.one      | 0!qaz"wsx£     |
+     | page.one.field.two      | EDC$RFV5tg     |
+     | page.one.field.three    |                |
    When I have clicked the "Continue" button on the "Page One" page
    Then I will progress to the "Page Two" page
 
@@ -50,9 +50,9 @@ Feature: Save My Stuff
 
    Given I am on the Save My Stuff page
    When I enter the following data in to the Page one
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
    When I have clicked the "Continue" button on the "Page One" page
    Then I will progress to the "Page Two" page

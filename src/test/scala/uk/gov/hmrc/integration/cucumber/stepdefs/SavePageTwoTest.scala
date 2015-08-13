@@ -17,24 +17,11 @@ class SavePageTwoTest extends ScalaDsl with EN {
     SavePageOne.savePageOneTitle()
 
   }
+
   When( """^I enter the following data in to the Page 1$""") {
-    (data: DataTable) =>
-      val row = data.asMaps(classOf[String], classOf[String]).iterator
-      while (row.hasNext) {
-        val map = row.next
-        val required_field = map.get("required_field")
-        val value = map.get("value")
-
-        required_field match {
-          case "field one" => BasePage.driver.findElement(SavePageOne.fieldOneId).sendKeys(value)
-          case "field two" => BasePage.driver.findElement(SavePageOne.fieldTwoId).sendKeys(value)
-          case "field three" => BasePage.driver.findElement(SavePageOne.fieldThreeId).sendKeys(value)
-        }
-//        SavePageOne.clickContinue_button()
-//        SavePageTwo.savePageTwoTitle()
-
+      (data: DataTable) => BasePage.inputDataFromFeature(data)
       }
-  }
+
   Then( """^I have clicked the "Continue" button on the "Page 1" page$""") { () =>
     SavePageOne.clickContinue_button()
   }
@@ -45,21 +32,9 @@ class SavePageTwoTest extends ScalaDsl with EN {
       }
 
       When( """^I enter the following data in to the Page Two$""") {
-
-        (data: DataTable) =>
-          val row = data.asMaps(classOf[String], classOf[String]).iterator
-          while (row.hasNext) {
-            val map = row.next
-            val required_field = map.get("required_field")
-            val value = map.get("value")
-
-            required_field match {
-              case "field one" => BasePage.driver.findElement(SavePageTwo.fieldOneId).sendKeys(value)
-              case "field two" => BasePage.driver.findElement(SavePageTwo.fieldTwoId).sendKeys(value)
-              case "field three" => BasePage.driver.findElement(SavePageTwo.fieldThreeId).sendKeys(value)
-            }
-          }
+        (data: DataTable) => BasePage.inputDataFromFeature(data)
       }
+
       When( """^I have clicked the "Continue" button on the "Page Two" page$""") { () =>
         SavePageTwo.clickContinue_button()
       }
