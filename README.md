@@ -1,7 +1,7 @@
 tlfd-acceptance-tests
 =========================
 
-This is the common project that will be used within DDCT when creating automated acceptance test frameworks using cucumber. Built using:
+This repo contains all of the acceptance tests which are defined in conjunction with the business using Given, When, Then statements written in Gherkin syntax. It is built using:
 
 cucumber 1.1.8
 
