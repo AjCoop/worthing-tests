@@ -1,4 +1,4 @@
-name := "your-project-name-goes-here"
+name := "tlfd-acceptance-tests"
 
 version := "0.0.1"
 

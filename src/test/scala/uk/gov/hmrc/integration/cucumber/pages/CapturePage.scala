@@ -81,7 +81,7 @@ object CapturePage extends BasePage{
     def fillData(text: String) = text match {
        case "option1" => inputSearchPostData("UTR", "1234", "01" , "07", "2015")
        case "option2" => inputSearchPostData("UTR","AB56789", "28" , "05" , "2015")
-       case "option3" => inputSearchPostData("Tax Reference","0A12340","28" ,"07" ,"2015")
+       case "option3" => inputSearchPostData("VRN","0A12340","28" ,"07" ,"2015")
 
     }
 
