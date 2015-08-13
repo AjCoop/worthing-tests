@@ -16,7 +16,7 @@ class CapturePageFields extends ScalaDsl with EN {
     CapturePage.verifyHeading()
     CapturePage.verifySearchSubHeading()
     CapturePage.UTRRadioLabel()
-    CapturePage.TaxRefRadioLabel()
+    CapturePage.VRNRadioLabel()
     CapturePage.Identifier()
     CapturePage.Date()
   }
