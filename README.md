@@ -1,11 +1,12 @@
-cucumber-acceptance-tests
+tlfd-acceptance-tests
 =========================
 
 This is the common project that will be used within DDCT when creating automated acceptance test frameworks using cucumber. Built using:
 
-    Cucumber
-    Selenium-webDriver
-    SBT to build
+cucumber 1.1.8
+java 1.8
+Scala 2.11.7
+SBT to build 0.13.8
     
 ### Getting started
 
@@ -18,16 +19,12 @@ Ensure that you have a working linux environment. If not follow the instructions
     3. Clone this repo.
     4. Import the project in InteliJ
     
-###  Execute sample test scenarios
+###  Project structure
+Each part of the application's functionality is described by feature files. The feature files are arranged into folders under src/test/features and grouped into the main areas of the application.
+Each step of the feature files is defined by executable test steps in the scala code under the src/test/scala/uk/gov/hmrc/integration/test/cucumber_stepdefs area and those utilise Page object models under src/test/scala/uk/gov/hmrc/integration/cucumber/pages which are the single place where page specific properties and variables are configured.
 
-This project is a template to get started with cucumber, do not focus on the example scenarios. Create Scenarios that will run on your own teams working environment.
-However if you just want to see the tests running, you can execute these via command line via the ./run_integration_dev.sh script
-Or you can execute via JUNIT within InteliJ:
-
-    1. Make sure you are on VPN
-    2. Start TAXS microservice
-    3. Go to Step definitions folder
-    4. Right click on RunTestSuite, select RunTestSuite
+###  Execution
+In /src/test/scala/uk/gov/hmrc/integration/cucumber there are scala classes which control what is run according to the tests tagged with the below tags. The main class is Runner which selects and runs tests marked @TLF3.
         
 
         
