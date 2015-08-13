@@ -1,4 +1,4 @@
-@TLF1
+@TLF3
 
 Feature: Save My Stuff
 
@@ -14,17 +14,17 @@ Feature: Save My Stuff
   Scenario: Scenario 1 - Check the mandatory fields for "Save My Stuff-Page Two" page
     Given I am on the SMS Page 1
     When I enter the following data in to the Page 1
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
     Then I have clicked the "Continue" button on the "Page 1" page
     Then I am on the SMS Page Two
     When I enter the following data in to the Page Two
-      | required_field          | value         |
-      | field one               |               |
-      | field two               |               |
-      | field three             |               |
+      | field_id                | value         |
+      | page.two.field.one      |               |
+      | page.two.field.two      |               |
+      | page.two.field.three    |               |
     When I have clicked the "Continue" button on the "Page Two" page
     Then I will be informed that "This field is mandatory"
 
@@ -32,17 +32,17 @@ Feature: Save My Stuff
 
     Given I am on the SMS Page 1
     When I enter the following data in to the Page 1
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
     Then I have clicked the "Continue" button on the "Page 1" page
     Then I am on the SMS Page Two
     When I enter the following data in to the Page Two
-      | required_field          | value          |
-      | field one               | AAAAAA         |
-      | field two               |                |
-      | field three             |                |
+      | field_id                | value          |
+      | page.two.field.one      | AAAAAA         |
+      | page.two.field.two      |                |
+      | page.two.field.three    |                |
     When I have clicked the "Continue" button on the "Page Two" page
     Then I will progress to the "summary" page
 
@@ -51,17 +51,17 @@ Feature: Save My Stuff
 
     Given I am on the SMS Page 1
     When I enter the following data in to the Page 1
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
     Then I have clicked the "Continue" button on the "Page 1" page
     Then I am on the SMS Page Two
     When I enter the following data in to the Page Two
-      | required_field          | value          |
-      | field one               | 0!qaz"wsx£     |
-      | field two               | EDC$RFV5tg     |
-      | field three             |                |
+      | field_id                | value          |
+      | page.two.field.one      | 0!qaz"wsx£     |
+      | page.two.field.two      | EDC$RFV5tg     |
+      | page.two.field.three    |                |
     When I have clicked the "Continue" button on the "Page Two" page
     Then I will progress to the "summary" page
 
@@ -70,16 +70,16 @@ Feature: Save My Stuff
   Scenario: Scenario 4 - Continue button passes validation
     Given I am on the SMS Page 1
     When I enter the following data in to the Page 1
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
     Then I have clicked the "Continue" button on the "Page 1" page
     Then I am on the SMS Page Two
     When I enter the following data in to the Page Two
-      | required_field         | value          |
-      | field one              | 0!qaz"wsx£     |
-      | field two              | EDC$RFV5tg     |
-      | field three            | %tgb^yhn&yh    |
+      | field_id               | value          |
+      | page.two.field.one     | 0!qaz"wsx£     |
+      | page.two.field.two     | EDC$RFV5tg     |
+      | page.two.field.three   | %tgb^yhn&yh    |
     When I have clicked the "Continue" button on the "Page Two" page
     Then I will progress to the "summary" page

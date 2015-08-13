@@ -2,7 +2,7 @@ name := "your-project-name-goes-here"
 
 version := "0.0.1"
 
-scalaVersion := "2.11.0"
+scalaVersion := "2.11.7"
 
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 
@@ -17,8 +17,8 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 
 libraryDependencies ++= Seq(
   "com.github.detro.ghostdriver" % "phantomjsdriver" % "1.1.0",
-  "org.seleniumhq.selenium" % "selenium-java" % "2.43.1",
-  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.43.1",
+  "org.seleniumhq.selenium" % "selenium-java" % "2.47.1",
+  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.47.1",
   "uk.gov.hmrc" % "secure-utils" % "4.0.0",
   "uk.gov.hmrc" %% "domain" % "2.1.0",
   "com.typesafe.play" %% "play-json" % "2.3.0",

@@ -16,6 +16,10 @@ object BaseUtil {
   val feProps: Properties = new Properties()
   loadProperties(feFis, feProps)
 
+  val idFis = new FileInputStream("../../src/test/resources/id.properties")
+  val idProps: Properties = new Properties()
+  loadProperties(idFis, idProps)
+
 
   def loadProperties(aFis: FileInputStream, aProps: Properties) = {
     try {aProps.load(aFis)}
@@ -39,6 +43,7 @@ object BaseUtil {
 
   def getMessage(key: String) = getProperty(key, props).replaceAll("''", "'")
   def getFrontendMessage(key: String) = getProperty(key, feProps).replaceAll("''", "'")
+  def getId(key: String) = getProperty(key, idProps).replaceAll("''", "'")
 
   def getFrontendMessage(key: String, substitution: String):String = {
     getFrontendMessage(key).replaceAll("\\{0}", substitution)
