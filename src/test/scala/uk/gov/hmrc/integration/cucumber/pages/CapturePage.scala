@@ -39,6 +39,7 @@ object CapturePage extends BasePage{
 
     def clickFindPost_button() = driver.findElement(By.xpath("//*[@id='content']/form/button")).click()
 
+
   //valid data for the utr,type and date fields
 
   // selecting the type
@@ -151,6 +152,7 @@ object CapturePage extends BasePage{
   //field formats verified
   //not used currently:def invalidUTRError()  = driver.findElement(By.id("UTR")).getText should include (getFrontendMessage("Invalid UTR entered"))
     def invalidDateError()  = driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText shouldBe getMessage ("testInvalidDate.erroemessage")
+    def receivedStatus () = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[2]")).getText shouldBe getMessage("testValue.idStatus")
 
 
 

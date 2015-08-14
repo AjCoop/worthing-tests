@@ -1,4 +1,4 @@
-@TLF3
+@TLF1
 Feature: End of All Tests
 
   Shutdown browser

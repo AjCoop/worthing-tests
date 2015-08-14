@@ -1,14 +1,9 @@
-@TLF3
+@TLF1
 
 Feature: Save My Stuff
 
   As an User
   I will be able to save my stuff in the check my post app
-
-
-#  Background:
-#    Given I am on the Check post page
-#    And I click the Save my stuff link
 
 
   Scenario: Scenario 1 - Check the mandatory fields for "Save My Stuff-Page Two" page
@@ -76,6 +71,13 @@ Feature: Save My Stuff
       | page.one.field.three   | %tgb^yhn&yh    |
     Then I have clicked the "Continue" button on the "Page 1" page
     Then I am on the SMS Page Two
+    Then I click back button to go back to Page One
+    And I enter the following data in to the Page 1
+      | field_id               | value          |
+      | page.one.field.one     | 0!qaz"wsx£     |
+      | page.one.field.two     | EDC$RFV5tg     |
+      | page.one.field.three   | %tgb^yhn&yh    |
+    Then I have clicked the "Continue" button on the "Page 1" page
     When I enter the following data in to the Page Two
       | field_id               | value          |
       | page.two.field.one     | 0!qaz"wsx£     |

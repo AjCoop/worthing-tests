@@ -58,7 +58,9 @@ trait BasePage extends Matchers {
 
      verifyValueUsingElementId(getId(field_id), value)
     }
+
   }
+  def clickBackbutton() = driver.findElement(By.xpath("//*[@id='back']")).click()
 
   def ShutdownTest() = driver.quit()
  }

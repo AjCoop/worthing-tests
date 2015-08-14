@@ -10,7 +10,7 @@ class CapturePageFields extends ScalaDsl with EN {
 
   //SCENARIO: ERROR MESSAGES FOR THE MANDATORY FIELDS ON THE CAPTURE PAGE
 
-  Given("""^I am on the Search Page$""") { () =>
+  Given( """^I am on the Search Page$""") { () =>
     CapturePage.login()
     CapturePage.iAmInCapturePage()
     CapturePage.verifyHeading()
@@ -22,19 +22,19 @@ class CapturePageFields extends ScalaDsl with EN {
   }
 
   /*as the page is loaded all the selected options i.e taxRef gets unset*/
-  When("""^I leave all the fields empty$""") { () =>
+  When( """^I leave all the fields empty$""") { () =>
     CapturePage.emptyIdentifierField()
     CapturePage.emptyDayField()
     CapturePage.emptyMonthField()
     CapturePage.emptyYearField()
 
   }
-  And("""^I click the submit button$""") { () =>
+  And( """^I click the submit button$""") { () =>
     CapturePage.clickFindPost_button()
   }
 
 
- Then("""^I will get the mandatory error messages displayed on the page$""") { () =>
+  Then( """^I will get the mandatory error messages displayed on the page$""") { () =>
     CapturePage.verifyErrorHeading()
     CapturePage.mandatoryIdentifierError()
     CapturePage.mandatoryTaxRefError()
@@ -43,7 +43,7 @@ class CapturePageFields extends ScalaDsl with EN {
 
   //SCENARIO: ERROR MESSAGES FOR THE INVALID FORMAT DATA ENTERED ON THE CAPTURE PAGE
 
-  Given("""^I am on the Search Page,I enter invalid UTR and invalid date format and I click the submit button$""") { () =>
+  Given( """^I am on the Search Page,I enter invalid UTR and invalid date format and I click the submit button$""") { () =>
     CapturePage iAmInCapturePage()
     CapturePage.selectTaxRef()
     CapturePage.invalidDay()
@@ -59,33 +59,41 @@ class CapturePageFields extends ScalaDsl with EN {
 
   //SCENARIO: SEARCH USING VALID UTR,TAXREF AND DATE ENTERED
 
-  Given("""^I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button$""") { () =>
-     CapturePage iAmInCapturePage()
-     CapturePage.selectTaxRef()
-     CapturePage.identifierDetails()
-     CapturePage.enterDay()
-     CapturePage.enterMonth()
-     CapturePage.enterYear()
-     CapturePage.clickFindPost_button()
+  Given( """^I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button$""") { () =>
+    CapturePage iAmInCapturePage()
+    CapturePage.selectTaxRef()
+    CapturePage.identifierDetails()
+    CapturePage.enterDay()
+    CapturePage.enterMonth()
+    CapturePage.enterYear()
+    CapturePage.clickFindPost_button()
   }
 
-   Then ("""^I will progress to the search Results page$""") { () =>
+  Then( """^I will progress to the search Results page$""") { () =>
     CurrentSearchResultsPage.verifyCheckPostHeading()
-     }
+  }
 
   //SCENARIO:SEARCH USING VALID UTR,TAX REF TYPE AND DATE ENTERED WHERE THE STATUS IS RECEIVED
 
-  Given("""^I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button where the status is Received$""") {() =>
+  Given( """^I am on the Search Page,I enter valid UTR, valid TaxRefType and a valid date and click the submit button where the status is Received$""") { () =>
     CapturePage.login()
     CapturePage iAmInCapturePage()
-//    CapturePage().selectTaxRef()
+    //    CapturePage().selectTaxRef()
     CapturePage.fillData("option3")
-//    CapturePage().enterDay()
-//    CapturePage().enterMonth()
-//    CapturePage().enterYear()
+    //    CapturePage().enterDay()
+    //    CapturePage().enterMonth()
+    //    CapturePage().enterYear()
     CapturePage.clickFindPost_button()
   }
-  Then ("""^I will progress to the search Results page and the Received status is displayed$""") { () =>
 
+  Then( """^I will progress to the search Results page and the Received status is displayed$""") { () =>
+    CapturePage.receivedStatus()
   }
+
+  Then("""^I click the back button to go back to the search page$""") { () =>
+    BasePage.clickBackbutton()
+    CapturePage.iAmInCapturePage()
+  }
+
+
 }

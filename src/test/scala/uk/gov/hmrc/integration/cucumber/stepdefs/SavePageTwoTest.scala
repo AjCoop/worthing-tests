@@ -43,23 +43,16 @@ class SavePageTwoTest extends ScalaDsl with EN {
         SavePageTwo.mandatoryFieldOneError()
         SavePageTwo.errorHeading()
 
+      }
+
+      Then( """^I click back button to go back to Page One$""") { () =>
+        BasePage.clickBackbutton()
+        SavePageOne.savePageOneTitle()
 
       }
 
-      //  When ("""^I click Back button$""") { () =>
-      //    SavePageTwo.appBack_button()
-      //
-      //  }
-      //
-      //  Then ("""^I will be navigated to Page One$""") { () =>
-      //    SavePageOne.savePageOneTitle()
-      //
-      //
-      //  }
-
-
       Then( """^I will progress to the "summary" page$""") { () =>
-
+        SavePageSummary.summaryTitle()
       }
 
       Then( """^I go back to the Page Two$""") { () =>
