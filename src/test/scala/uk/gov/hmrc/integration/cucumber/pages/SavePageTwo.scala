@@ -26,7 +26,7 @@ object SavePageTwo extends BasePage with Matchers {
   def errorHeading() = driver.findElement(By.xpath("//*[@id='error-heading']")).getText contains("Your form contains one or more errors")
 
   def navigateBack =driver.navigate().back()
-  def appBack_button()= driver.findElement(By.xpath("//*[@id='back']")).click()
+  //def appBack_button()= driver.findElement(By.xpath("//*[@id='back']")).click()
 
 
 

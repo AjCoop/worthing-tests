@@ -19,7 +19,6 @@ class SearchListPageTest extends ScalaDsl with EN {
     CapturePage.clickFindPost_button()
     CurrentSearchResultsPage.ViewallSearch()
 
-
   }
 
   And( """^I should see a page displayed with the results of the all the searches the user has made.$""") { () =>
@@ -33,7 +32,11 @@ class SearchListPageTest extends ScalaDsl with EN {
     SearchListPage.SubTitle
     SearchListPage.verifyTheInputRecord
 
+  }
 
+  And( """^I click back button to go back to the Search Page.$""") { () =>
+    BasePage.clickBackbutton()
+    CapturePage.iAmInCapturePage()
   }
 
 }

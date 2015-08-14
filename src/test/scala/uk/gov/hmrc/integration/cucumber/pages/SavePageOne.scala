@@ -32,5 +32,4 @@ object SavePageOne extends BasePage with Matchers {
   def errorHeading() = driver.findElement(By.xpath("//*[@id='error-heading']")).getText contains("Your form contains one or more errors")
 
 
-
 }

@@ -45,27 +45,6 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
 
   Then ("""^I will see the details I have entered$""") { () =>
     (data: DataTable) => BasePage.checkDataFromFeature(data)
-//      val row = data.asMaps(classOf[String], classOf[String]).iterator
-//      while (row.hasNext) {
-//        val map = row.next
-//        val required_field = map.get("required_field")
-//        val value = map.get("value")
-//
-//        required_field match {
-//          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldOneValue, value)
-//          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldTwoValue, value)
-//          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageOneFieldThreeValue, value)
-//
-//        }
-//
-//        required_field match {
-//          case "field one" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldOneValue, value)
-//          case "field two" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldTwoValue, value)
-//          case "field three" => BasePage.verifyValueUsingElementId(SavePageSummary.pageTwoFieldThreeValue, value)
-//
-//        }
-
       }
 
-//  }
 }
