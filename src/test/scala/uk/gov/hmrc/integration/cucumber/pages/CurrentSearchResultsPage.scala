@@ -12,12 +12,13 @@ import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 /**
  *
- * Created by haripriya on 29/07/15.
+ * Edited by Matt Turner on 19/08/15.
  */
 object CurrentSearchResultsPage extends BasePage with Matchers {
 
-  //val searchResultPageURL = "http://localhost:9090/tlfd/searchResults"
-  //def iAmInSearchResultPage() = driver.getCurrentUrl shouldBe searchResultPageURL
+  val searchResultPageURL = "http://localhost:9090/tlfd-frontend/wmp/get-all-check-post"
+  def iAmInSearchResultPage() = driver.getCurrentUrl shouldBe searchResultPageURL
+  def loginSearch(){driver.navigate().to(searchResultPageURL)}
 
   val cal: Calendar = Calendar.getInstance()
 
@@ -29,32 +30,18 @@ object CurrentSearchResultsPage extends BasePage with Matchers {
    def timestamp = DateTimeFormat.forPattern("yyyy-MM-dd").print(new DateTime())
    println(timestamp)
 
-  def verifyCheckPostHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='page-title']")).getText.contains("Check Post"))
-  def verifyCheckPostSubHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/p")).getText.contains("Check Post"))
-  def verifyTableKeyHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/thead/tr/th[1]")).getText.contains("Key"))
-  def verifyTableValueHeading() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/thead/tr/th[2]")).getText.contains("Value"))
-  def verifyRowType() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[1]/td[1]")).getText.contains("Type"))
-  def verifyRowID() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[2]/td[1]")).getText.contains("ID"))
-  def verifyRowDateSent() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[3]/td[1]")).getText.contains("Date Sent"))
-  def verifyRowDateReceived() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[4]/td[1]")).getText.contains("Date Received"))
-  def verifyRowStatus() = Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[1]")).getText.contains("Status"))
+  def verifyCheckPostHeading() = Assert.assertEquals(getMessage("page.result.title"), driver.findElement(By.xpath("//*[@id='page-title']")).getText)
+  def verifyCheckPostSubHeading() = Assert.assertEquals(getMessage("page.result.subHeading"),driver.findElement(By.xpath("//*[@id='content']/section/div/p")).getText)
+  def verifyTableKeyHeading() = Assert.assertEquals(getMessage("page.result.keyHeading"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/thead/tr/th[1]")).getText)
+  def verifyTableValueHeading() = Assert.assertEquals(getMessage("page.result.valHeading"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/thead/tr/th[2]")).getText)
+  def verifyRowType() = Assert.assertEquals(getMessage("page.result.row.type"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[1]/td[1]")).getText)
+  def verifyRowID() = Assert.assertEquals(getMessage("page.result.row.id"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[2]/td[1]")).getText)
+  def verifyRowDateSent() = Assert.assertEquals(getMessage("page.result.row.dateSent"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[3]/td[1]")).getText)
+  def verifyRowDateReceived() = Assert.assertEquals(getMessage("page.result.row.dateReceived"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[4]/td[1]")).getText)
+  def verifyRowStatus() = Assert.assertEquals(getMessage("page.result.row.status"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[1]")).getText)
 
-  def verifyTypeValue() = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[1]/td[2]")).getText shouldBe (getMessage("testValue.idType"))
-  def verifyIDValue() = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[2]/td[2]")).getText shouldBe (getMessage("testValue.id"))
-  def verifyDateSent() = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[3]/td[2]")).getText shouldBe (timestamp)
-  def verifyDateReceived() = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[4]/td[2]")).getText shouldBe (getMessage("testValue.idDateReceived"))
-  def verifyStatusValue() = driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[2]")).getText shouldBe(getMessage("testValue.idStatus"))
-
-  def ViewallSearch() {
+  def viewAllSearch() {
     driver.findElement(By.id("viewAllSearchesLink")).click()
-
-
-
-
-
   }
-
-
-
 }
 

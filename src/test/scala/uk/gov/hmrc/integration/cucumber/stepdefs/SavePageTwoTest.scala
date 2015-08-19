@@ -13,7 +13,7 @@ class SavePageTwoTest extends ScalaDsl with EN {
 
   Given( """^I am on the SMS Page 1$""") { () =>
     CapturePage.login()
-    SavePageOne.searchMyStuffLink
+    SavePageOne.searchMyStuffLink()
     SavePageOne.savePageOneTitle()
 
   }
@@ -23,7 +23,7 @@ class SavePageTwoTest extends ScalaDsl with EN {
       }
 
   Then( """^I have clicked the "Continue" button on the "Page 1" page$""") { () =>
-    SavePageOne.clickContinue_button()
+    BasePage.clickContinue_button()
   }
 
 
@@ -36,17 +36,17 @@ class SavePageTwoTest extends ScalaDsl with EN {
       }
 
       When( """^I have clicked the "Continue" button on the "Page Two" page$""") { () =>
-        SavePageTwo.clickContinue_button()
+        BasePage.clickSubmit_button()
       }
 
       Then( """^I will be informed that "This field is mandatory"$""") { () =>
-        SavePageTwo.mandatoryFieldOneError()
-        SavePageTwo.errorHeading()
+        SavePageTwo.mandatoryFieldPageTwoError()
+        BasePage.errorHeading()
 
       }
 
       Then( """^I click back button to go back to Page One$""") { () =>
-        BasePage.clickBackbutton()
+        BasePage.clickBackButton()
         SavePageOne.savePageOneTitle()
 
       }
@@ -56,7 +56,7 @@ class SavePageTwoTest extends ScalaDsl with EN {
       }
 
       Then( """^I go back to the Page Two$""") { () =>
-        SavePageTwo.navigateBack
+        BasePage.navigateBack()
 
       }
   }

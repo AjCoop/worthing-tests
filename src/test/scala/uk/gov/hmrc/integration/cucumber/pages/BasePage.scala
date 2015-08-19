@@ -1,14 +1,15 @@
 package uk.gov.hmrc.integration.cucumber.pages
 
 import cucumber.api.DataTable
-import org.openqa.selenium.By
+import org.junit.Assert
+import org.openqa.selenium.{Keys, By}
 import org.openqa.selenium.remote.{CapabilityType, DesiredCapabilities, RemoteWebDriver}
 import uk.gov.hmrc.integration.cucumber.utils.SingletonDriver
 import org.scalatest.Matchers
 import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 /**
- * Created by haripriya on 27/07/15.
+ * Edited by Matt Turner on 19/08/15.
  */
 object BasePage extends BasePage
 
@@ -34,9 +35,9 @@ trait BasePage extends Matchers {
 
   class HmrcPageWaitException(exceptionMessage: String) extends Exception(exceptionMessage)
 
-  def sendKeysUsingElementId(elementId: String, value : String) = driver.findElement(By.id(elementId)).sendKeys(value)
+  def sendKeysUsingElementId(elementId: String, value : String) = driver.findElement(By.id(elementId)).sendKeys(Keys.chord(Keys.CONTROL, "a"),value)
 
-  def verifyValueUsingElementId(elementId: String, expectedValue : String) = driver.findElement(By.id(elementId)).getText() shouldBe expectedValue
+  def verifyValueUsingElementId(elementId: String, expectedValue : String) = driver.findElement(By.id(elementId)).getText shouldBe expectedValue
 
   def inputDataFromFeature(data: DataTable) = {
     val row = data.asMaps(classOf[String], classOf[String]).iterator
@@ -46,6 +47,16 @@ trait BasePage extends Matchers {
       val value = map.get("value")
 
       sendKeysUsingElementId(getId(field_id), value)
+    }
+  }
+
+  def inputTypeFromFeature(data: DataTable) = {
+   val row = data.asMaps(classOf[String], classOf[String]).iterator
+    while (row.hasNext) {
+      val map = row.next
+      val refType = map.get("type")
+
+      driver.findElement(By.xpath("//*[@id='idType-"+ refType +"']")).click()
     }
   }
 
@@ -60,7 +71,16 @@ trait BasePage extends Matchers {
     }
 
   }
-  def clickBackbutton() = driver.findElement(By.xpath("//*[@id='back']")).click()
+  def clickBackButton() = driver.findElement(By.xpath("//*[@id='back']")).click()
 
   def ShutdownTest() = driver.quit()
- }
+
+  // Save My Stuff Common tests
+
+  def clickContinue_button() = driver.findElement(By.xpath("//*[@id='continue']")).click()
+  def clickSubmit_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
+  def navigateBack() =driver.navigate().back()
+  def errorHeading() = Assert.assertEquals("Your form contains one or more errors", driver.findElement(By.xpath("//*[@id='error-heading']")).getText)
+
+
+}
