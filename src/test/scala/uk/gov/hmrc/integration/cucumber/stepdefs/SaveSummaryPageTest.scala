@@ -8,13 +8,13 @@ import uk.gov.hmrc.integration.cucumber.pages.CurrentSearchResultsPage._
 import uk.gov.hmrc.integration.cucumber.pages._
 
 /**
- * Created by haripriya on 07/08/15.
+ * Edited by Matt Turner on 19/08/15.
  */
 class SaveSummaryPageTest extends ScalaDsl with EN {
 
   Given( """^I am in SMS page$""") { () =>
     CapturePage.login()
-    SavePageOne.searchMyStuffLink
+    SavePageOne.searchMyStuffLink()
     SavePageOne.savePageOneTitle()
 
   }
@@ -24,7 +24,7 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
   }
 
   Then( """^I click Continue$""") { () =>
-    SavePageOne.clickContinue_button()
+    BasePage.clickContinue_button()
     SavePageTwo.savePageTwoTitle()
   }
 
@@ -33,7 +33,7 @@ class SaveSummaryPageTest extends ScalaDsl with EN {
 
   }
   Then( """^I click Submit$""") { () =>
-    SavePageTwo.clickContinue_button()
+    BasePage.clickSubmit_button()
 
   }
 
