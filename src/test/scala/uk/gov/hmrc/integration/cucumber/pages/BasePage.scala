@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.{CapabilityType, DesiredCapabilities, RemoteWe
 import uk.gov.hmrc.integration.cucumber.utils.SingletonDriver
 import org.scalatest.Matchers
 import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
+import scala.collection.JavaConversions._
 
 /**
  * Edited by Matt Turner on 19/08/15.
@@ -40,37 +41,23 @@ trait BasePage extends Matchers {
   def verifyValueUsingElementId(elementId: String, expectedValue : String) = driver.findElement(By.id(elementId)).getText shouldBe expectedValue
 
   def inputDataFromFeature(data: DataTable) = {
-    val row = data.asMaps(classOf[String], classOf[String]).iterator
-    while (row.hasNext) {
-      val map = row.next
-      val field_id = map.get("field_id")
-      val value = map.get("value")
-
-      sendKeysUsingElementId(getId(field_id), value)
-    }
+    data.asMaps(classOf[String], classOf[String]).foreach(x =>
+      sendKeysUsingElementId(getId(x.get("field_id")), x.get("value"))
+    )
   }
 
   def inputTypeFromFeature(data: DataTable) = {
-   val row = data.asMaps(classOf[String], classOf[String]).iterator
-    while (row.hasNext) {
-      val map = row.next
-      val refType = map.get("type")
-
-      driver.findElement(By.xpath("//*[@id='idType-"+ refType +"']")).click()
-    }
+    data.asMaps(classOf[String], classOf[String]).foreach( x=>
+      driver.findElement(By.xpath("//*[@id='idType-"+ x.get("type") +"']")).click()
+    )
   }
 
   def checkDataFromFeature(data: DataTable) = {
-    val row = data.asMaps(classOf[String], classOf[String]).iterator
-    while (row.hasNext) {
-      val map = row.next
-      val field_id = map.get("field_id")
-      val value = map.get("value")
-
-     verifyValueUsingElementId(getId(field_id), value)
-    }
-
+    data.asMaps(classOf[String], classOf[String]).foreach(x =>
+      verifyValueUsingElementId(getId(x.get("field_id")), x.get("value"))
+    )
   }
+
   def clickBackButton() = driver.findElement(By.xpath("//*[@id='back']")).click()
 
   def ShutdownTest() = driver.quit()
