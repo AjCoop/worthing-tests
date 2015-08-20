@@ -66,6 +66,6 @@ trait BasePage extends Matchers {
   def clickSubmit_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
   def navigateBack() =driver.navigate().back()
   def errorHeading() = Assert.assertEquals("Your form contains one or more errors", driver.findElement(By.xpath("//*[@id='error-heading']")).getText)
-
+//A comment
 
 }
