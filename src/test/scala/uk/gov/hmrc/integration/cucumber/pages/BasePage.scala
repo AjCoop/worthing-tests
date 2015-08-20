@@ -62,8 +62,6 @@ trait BasePage extends Matchers {
 
   def ShutdownTest() = driver.quit()
 
-  // Save My Stuff Common tests
-
   def clickContinue_button() = driver.findElement(By.xpath("//*[@id='continue']")).click()
   def clickSubmit_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
   def navigateBack() =driver.navigate().back()
