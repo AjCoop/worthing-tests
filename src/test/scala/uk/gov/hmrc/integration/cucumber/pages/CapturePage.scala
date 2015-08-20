@@ -144,7 +144,7 @@ object CapturePage extends BasePage{
   //field formats verified
   //not used currently:def invalidUTRError()  = driver.findElement(By.id("UTR")).getText should include (getFrontendMessage("Invalid UTR entered"))
     def invalidDateError()  = Assert.assertEquals(getMessage("testInvalidDate.errorMessage"), driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText)
-    def invalidUTRError() = Assert.assertEquals(getMessage("testInvalidUTR.errorMessage"), driver.findElement(By.xpath("//*[@id='dateSent-error']/a")).getText)
+    def invalidUTRError() = Assert.assertEquals(getMessage("testInvalidUTR.errorMessage"), driver.findElement(By.xpath("//*[@id='id-error']/a")).getText)
     def receivedStatus () = Assert.assertEquals(getMessage("testValue.idReceivedStatus"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[2]")).getText)
     def notFoundStatus () = Assert.assertEquals(getMessage("testValue.idNotFoundStatus"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[2]")).getText)
     def inProgressStatus () = Assert.assertEquals(getMessage("testValue.idInProgressStatus"), driver.findElement(By.xpath("//*[@id='content']/section/div/table/tbody/tr[5]/td[2]")).getText)
