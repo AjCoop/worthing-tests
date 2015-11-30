@@ -24,9 +24,11 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % "2.3.0",
   "org.scalatest" % "scalatest_2.11" % "2.2.1",
   "org.pegdown" % "pegdown" % "1.1.0" % "test",
-  "org.scala-lang" % "scala-library" % "2.11.2",
+  "org.scala-lang" % "scala-library" % "2.11.7",
   "info.cukes" % "cucumber-scala_2.11" % "1.1.8",
   "info.cukes" % "cucumber-junit" % "1.1.8",
   "info.cukes" % "cucumber-picocontainer" % "1.1.8",
   "junit" % "junit" % "4.11" % "test",
-  "com.novocode" % "junit-interface" % "0.10" % "test")
+  "com.novocode" % "junit-interface" % "0.10" % "test",
+  "uk.gov.hmrc" %% "accessibility-driver" % "1.6.0"
+)

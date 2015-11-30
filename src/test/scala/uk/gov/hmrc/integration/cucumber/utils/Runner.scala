@@ -1,4 +1,4 @@
-package uk.gov.hmrc.integration.cucumber
+package uk.gov.hmrc.integration.cucumber.utils
 
 
 import cucumber.api.java.Before
@@ -11,7 +11,7 @@ import scala.sys.process.Process
 
 @RunWith(classOf[Cucumber])
 @Options(
-  features = Array("../../src/test/resources/features"),
+  features = Array("src/test/resources/features"),
   glue = Array("uk.gov.hmrc.integration.cucumber.stepdefs"),
   format = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
   //tags = Array("@TLF3,@TLF1")

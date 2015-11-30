@@ -1,4 +1,4 @@
 #!/bin/bash
 export DISPLAY=":99"
-sbt -Dbrowser=firefox 'test-only uk.gov.hmrc.integration.cucumber.RunTestSuite'
+sbt -Dbrowser=firefox Denvironment=dev 'test-only uk.gov.hmrc.integration.cucumber.Runner'
 

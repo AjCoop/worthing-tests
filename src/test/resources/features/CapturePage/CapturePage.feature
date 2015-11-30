@@ -1,6 +1,6 @@
 @TLF1
 
-Feature: Search for Post
+Feature:  forSearch Post
 
   Scenario: Error messages for the mandatory fields on the Capture Page
     Given I am on the Search Page
