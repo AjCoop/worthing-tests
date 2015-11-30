@@ -20,7 +20,7 @@ import uk.gov.hmrc.integration.cucumber.utils.BaseUtil._
 
 object CapturePage extends BasePage{
   //url and the current page
-    val CapturePageURL = "http://localhost:9090/tlfd-frontend/wmp/search"
+    val CapturePageURL =basePageUrl+ "/wmp/search"
     def iAmInCapturePage() = driver.getCurrentUrl shouldBe CapturePageURL
     def login(){driver.navigate().to(CapturePageURL)}
 
@@ -53,6 +53,7 @@ object CapturePage extends BasePage{
   // identifier where the status is not found
     def identifierDetails() {
       driver.findElement(By.xpath("//*[@id='id']")).sendKeys(getMessage("testValue.id"))
+
     }
 
 

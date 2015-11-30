@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Run BrowserStackLocal
+sh ./run_dependencies.sh
+
+# Cross Browsers And Devices
+sh ./run_browserstack_all_browsers.sh BS_Mavericks_Chrome_38 BS_Mavericks_Firefox_33 BS_Mavericks_Safari_7 BS_Win7_Chrome_38 BS_WIN7_Firefox_33 BS_Win7_IE_8 BS_Win7_IE_9 BS_Win7_IE_10 BS_Win7_IE_11 BS_Win8_Chrome_38 BS_Win8_Firefox_33 BS_Win8_IE_10 BS_WIN_8_1_Chrome_38 BS_WIN_8_1_Firefox_33 BS_WIN_8_1_IE_11 BS_WinXP_Chrome_38 BS_WINXP_Firefox_33 BS_WINXP_IE_6 BS_WINXP_IE_7 BS_Yosemite_Chrome_38 BS_Yosemite_Firefox_33
+sh ./run_browserstack_all_devices.sh BS_Andriod_Galaxys5 BS_iOS_iPhone5 BS_iOS_iPhone5S

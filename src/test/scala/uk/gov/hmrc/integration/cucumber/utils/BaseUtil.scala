@@ -8,15 +8,15 @@ import org.joda.time.LocalDate
 object BaseUtil {
   // In the DDCN project the following are set to ./ not ../../ but that didn't work for me HN.
   // If you can fix it let me know how :)
-  val fis = new FileInputStream("../../src/test/resources/message.properties")
+  val fis = new FileInputStream("src/test/resources/message.properties")
   val props: Properties = new Properties()
   loadProperties(fis, props)
 
-  val feFis = new FileInputStream("../../src/test/resources/copyOfFrontendMessages.properties")
+  val feFis = new FileInputStream("src/test/resources/copyOfFrontendMessages.properties")
   val feProps: Properties = new Properties()
   loadProperties(feFis, feProps)
 
-  val idFis = new FileInputStream("../../src/test/resources/id.properties")
+  val idFis = new FileInputStream("src/test/resources/id.properties")
   val idProps: Properties = new Properties()
   loadProperties(idFis, idProps)
 

@@ -2,7 +2,7 @@ package uk.gov.hmrc.integration.cucumber.pages
 
 import cucumber.api.DataTable
 import org.junit.Assert
-import org.openqa.selenium.{Keys, By}
+import org.openqa.selenium.{Keys, By, WebDriver}
 import org.openqa.selenium.remote.{CapabilityType, DesiredCapabilities, RemoteWebDriver}
 import uk.gov.hmrc.integration.cucumber.utils.SingletonDriver
 import org.scalatest.Matchers
@@ -14,9 +14,22 @@ import scala.collection.JavaConversions._
  */
 object BasePage extends BasePage
 
+
+
 trait BasePage extends Matchers {
   val driver = SingletonDriver.getInstance()
 
+  lazy val basePageUrl: String = {
+    val environmentProperty = System.getProperty("environment", "local").toLowerCase
+    environmentProperty match {
+      case "local" => "http://localhost:9090/tlfd-frontend"
+      case "preview" => "https://preview.tax.service.gov.uk/tlfd-frontend"
+      case "qa" => "https://web-qa.tax.service.gov.uk/tlfd-frontend"
+      case "staging" => "https://www-staging.tax.service.gov.uk/tlfd-frontend"
+      case "dev" => "https://www-dev.tax.service.gov.uk/tlfd-frontend"
+      case _ => throw new IllegalArgumentException(s"Environment '$environmentProperty' not known")
+    }
+  }
 
   def waitForPageToBeLoaded(condition: => Boolean, exceptionMessage: String, timeoutInSeconds: Int = 2) {
     val endTime = System.currentTimeMillis + timeoutInSeconds * 1000
@@ -61,11 +74,8 @@ trait BasePage extends Matchers {
   def clickBackButton() = driver.findElement(By.xpath("//*[@id='back']")).click()
 
   def ShutdownTest() = driver.quit()
-
   def clickContinue_button() = driver.findElement(By.xpath("//*[@id='continue']")).click()
   def clickSubmit_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
   def navigateBack() =driver.navigate().back()
   def errorHeading() = Assert.assertEquals("Your form contains one or more errors", driver.findElement(By.xpath("//*[@id='error-heading']")).getText)
-//A comment
-
 }
