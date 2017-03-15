@@ -49,9 +49,9 @@ trait BasePage extends Matchers {
 
   class HmrcPageWaitException(exceptionMessage: String) extends Exception(exceptionMessage)
 
-  def sendKeysUsingElementId(elementId: String, value : String) = driver.findElement(By.id(elementId)).sendKeys(Keys.chord(Keys.CONTROL, "a"),value)
+  def sendKeysUsingElementId(elementId: String, value: String) = driver.findElement(By.id(elementId)).sendKeys(Keys.chord(Keys.CONTROL, "a"), value)
 
-  def verifyValueUsingElementId(elementId: String, expectedValue : String) = driver.findElement(By.id(elementId)).getText shouldBe expectedValue
+  def verifyValueUsingElementId(elementId: String, expectedValue: String) = driver.findElement(By.id(elementId)).getText shouldBe expectedValue
 
   def inputDataFromFeature(data: DataTable) = {
     data.asMaps(classOf[String], classOf[String]).foreach(x =>
@@ -60,8 +60,8 @@ trait BasePage extends Matchers {
   }
 
   def inputTypeFromFeature(data: DataTable) = {
-    data.asMaps(classOf[String], classOf[String]).foreach( x=>
-      driver.findElement(By.xpath("//*[@id='idType-"+ x.get("type") +"']")).click()
+    data.asMaps(classOf[String], classOf[String]).foreach(x =>
+      driver.findElement(By.xpath("//*[@id='idType-" + x.get("type") + "']")).click()
     )
   }
 
@@ -74,8 +74,27 @@ trait BasePage extends Matchers {
   def clickBackButton() = driver.findElement(By.xpath("//*[@id='back']")).click()
 
   def ShutdownTest() = driver.quit()
+
   def clickContinue_button() = driver.findElement(By.xpath("//*[@id='continue']")).click()
+
   def clickSubmit_button() = driver.findElement(By.xpath("//*[@id='submit']")).click()
-  def navigateBack() =driver.navigate().back()
+
+  def navigateBack() = driver.navigate().back()
+
   def errorHeading() = Assert.assertEquals("Your form contains one or more errors", driver.findElement(By.xpath("//*[@id='error-heading']")).getText)
+
+  def navigateTo(url: String) = driver.navigate().to(url)
+
+  def findById(id: String) = driver.findElement(By.id(id))
+
+  def navigateToPage(url: String) {
+    printf(s"##################### Navigating to $url #########################" + "\n")
+    driver.navigate().to(url)
+    Thread.sleep(2000)
+  }
+
+  def clickById(id: String) = driver.findElement(By.id(id)).click()
+  def clickByCss(selector: String) = driver.findElement(By.cssSelector(selector)).click()
+  def clickContinue() = findById("doLogin").click()
+  def clickCreate() = findById("createHotel").click()
 }

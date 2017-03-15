@@ -1,22 +1,15 @@
 package uk.gov.hmrc.integration.cucumber.utils
 
-
-import cucumber.api.java.Before
+import cucumber.api.CucumberOptions
 import cucumber.api.junit.Cucumber
-import cucumber.api.junit.Cucumber.Options
 import org.junit.runner.RunWith
 
-import scala.sys.process.Process
-
-
 @RunWith(classOf[Cucumber])
-@Options(
+@CucumberOptions(
   features = Array("src/test/resources/features"),
   glue = Array("uk.gov.hmrc.integration.cucumber.stepdefs"),
   format = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  //tags = Array("@TLF3,@TLF1")
-  tags = Array("@TLF1")
-  //tags = Array("@Suite,@BAPP5,@Pending,@shutdown","~@Wip,~@Zap,~@BAPP-REGISTER")
+  tags = Array("@Tests")
 )
 class Runner {
 }
