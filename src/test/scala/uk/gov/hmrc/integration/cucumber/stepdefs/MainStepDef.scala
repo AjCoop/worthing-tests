@@ -25,9 +25,13 @@ class MainStepDef extends ScalaDsl with EN {
     (hotel: String, address: String, owner: String, phone: String, email: String) =>
       MainPage.waitForPageToBeLoaded(MainPage.findById("hotelName").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("hotelName").sendKeys(hotel)
+      MainPage.waitForPageToBeLoaded(MainPage.findById("address").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("address").sendKeys(address)
+      MainPage.waitForPageToBeLoaded(MainPage.findById("owner").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("owner").sendKeys(owner)
+      MainPage.waitForPageToBeLoaded(MainPage.findById("phone").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("phone").sendKeys(phone)
+      MainPage.waitForPageToBeLoaded(MainPage.findById("email").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("email").sendKeys(email)
       MainPage.clickCreate()
   }
