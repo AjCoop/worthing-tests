@@ -1,5 +1,6 @@
 package uk.gov.hmrc.integration.cucumber.stepdefs
 
+import cucumber.api.DataTable
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.openqa.selenium.By
 import uk.gov.hmrc.integration.cucumber.pages.MainPage
@@ -9,10 +10,10 @@ import uk.gov.hmrc.integration.cucumber.pages.MainPage
   */
 class MainStepDef extends ScalaDsl with EN {
 
-  Given("""^The user navigates to the main page$"""){ () =>
+  Given("""^The user navigates to the main page$""") { () =>
     MainPage.navigateToPage("http://localhost:3003")
-}
-   When ("""^The user logs in$"""){ () =>
+  }
+  When("""^The user logs in$""") { () =>
     MainPage.clickByCss("[data-toggle~=modal]")
     MainPage.waitForPageToBeLoaded(MainPage.findById("username").isDisplayed == true, "No Pop up", 10)
     MainPage.findById("username").sendKeys("admin")
@@ -20,16 +21,23 @@ class MainStepDef extends ScalaDsl with EN {
     MainPage.clickContinue()
   }
 
-  Then ("""^The user enters in a single row of data$"""){ () =>
-    MainPage.findById("hotelName").sendKeys("holiday inn")
-    MainPage.findById("address").sendKeys("tree road")
-    MainPage.findById("owner").sendKeys("Adam Cooper")
-    MainPage.findById("phone").sendKeys("4534534534")
-    MainPage.findById("email").sendKeys("adam@adam.COM")
-    MainPage.clickCreate()
+  Then("""^The user enters (.*), (.*), (.*), (.*) and (.*) as their data$""") {
+    (hotel: String, address: String, owner: String, phone: String, email: String) =>
+      MainPage.findById("hotelName").sendKeys(hotel)
+      MainPage.findById("address").sendKeys(address)
+      MainPage.findById("owner").sendKeys(owner)
+      MainPage.findById("phone").sendKeys(phone)
+      MainPage.findById("email").sendKeys(email)
+      MainPage.clickCreate()
+  }
+
+  When("""^the user clicks delete$""") {
+    MainPage.clickByCss("[class~=glyphicon glyphicon-remove hotelDelete")
+
+  }
+
+  When("""^Then the row is deleted$""") {
 
 
-}
-
-
+  }
 }

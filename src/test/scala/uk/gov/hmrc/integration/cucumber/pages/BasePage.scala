@@ -94,7 +94,21 @@ trait BasePage extends Matchers {
   }
 
   def clickById(id: String) = driver.findElement(By.id(id)).click()
+
   def clickByCss(selector: String) = driver.findElement(By.cssSelector(selector)).click()
+
   def clickContinue() = findById("doLogin").click()
+
   def clickCreate() = findById("createHotel").click()
+
+  def enterData(data: DataTable) = {
+    val row = data.asMaps(classOf[String], classOf[String]).iterator
+    while (row.hasNext) {
+      val map = row.next
+      val key = map.get("id")
+      val value = map.get("entry")
+      findById(key).sendKeys(value)
+    }
+  }
+
 }
