@@ -23,6 +23,7 @@ class MainStepDef extends ScalaDsl with EN {
 
   Then("""^The user enters (.*), (.*), (.*), (.*) and (.*) as their data$""") {
     (hotel: String, address: String, owner: String, phone: String, email: String) =>
+      MainPage.waitForPageToBeLoaded(MainPage.findById("hotelName").isDisplayed == true, "No Pop up", 10)
       MainPage.findById("hotelName").sendKeys(hotel)
       MainPage.findById("address").sendKeys(address)
       MainPage.findById("owner").sendKeys(owner)
@@ -32,11 +33,11 @@ class MainStepDef extends ScalaDsl with EN {
   }
 
   When("""^the user clicks delete$""") {
-    MainPage.clickByCss("[class~=glyphicon glyphicon-remove hotelDelete")
+    MainPage.clickByCss("[class~=glyphicon glyphicon-remove hotelDelete]")
 
   }
 
-  When("""^Then the row is deleted$""") {
+  Then("""^the row is deleted$""") {
 
 
   }
